@@ -12,24 +12,11 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Merchandise List Spreadsheet ID:"
+            android:text="Spreadsheet ID:"
             android:textSize="20sp"/>
 
         <EditText
-            android:id="@+id/merch_list_id"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-        </EditText>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Tab Spreadsheet ID:"
-            android:textSize="20sp"/>
-
-        <EditText
-            android:id="@+id/tab_sheet_id"
+            android:id="@+id/spreadsheet_id"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 

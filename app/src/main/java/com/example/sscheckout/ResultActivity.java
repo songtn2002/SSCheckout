@@ -8,19 +8,33 @@ import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 public class ResultActivity extends AppCompatActivity {
 
     private Button backHomeButton;
+    private TextView resultText;
+    private TextView messageText;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_result);
 
-        ActionBar actionBar =  getSupportActionBar();
-        actionBar.setDisplayHomeAsUpEnabled(true);
-        actionBar.setHomeButtonEnabled(true);
+        resultText = (TextView) findViewById(R.id.result_text);
+        messageText = (TextView) findViewById(R.id.message_text);
+
+        final Intent lastIntent = getIntent();
+        String message = lastIntent.getStringExtra("update result");
+        if (message.equals("Successfully Updated")){
+            resultText.setText("Hey! Success");
+            double totalCost = lastIntent.getDoubleExtra("total cost", 0.0);
+            String displayMsg = "$"+String.valueOf(totalCost)+" added to your tab";
+            messageText.setText(displayMsg);
+        }else{
+            resultText.setText("Oops... Error");
+            messageText.setText(message);
+        }
 
         backHomeButton = (Button) findViewById(R.id.back_home_button);
         backHomeButton.setOnClickListener(new View.OnClickListener(){
@@ -33,14 +47,7 @@ public class ResultActivity extends AppCompatActivity {
     }
 
     @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case android.R.id.home:
-                // app icon in action bar clicked; goto parent activity.
-                this.finish();
-                return true;
-            default:
-                return super.onOptionsItemSelected(item);
-        }
+    public void onBackPressed() {
+        //nothing done when back pressed
     }
 }

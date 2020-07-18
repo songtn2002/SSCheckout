@@ -15,7 +15,6 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.jar.Attributes;
 
 public class CartActivity extends AppCompatActivity {
 
@@ -41,13 +40,13 @@ public class CartActivity extends AppCompatActivity {
                 startActivityForResult(intent, 1);
             }
         });
-        listView = (ListView) findViewById(R.id.list_view);
+        listView = (ListView) findViewById(R.id.cart_list_view);
         totalText = (TextView) findViewById(R.id.total_text);
         Button confirmButton = (Button) findViewById(R.id.confirm_button);
         confirmButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(CartActivity.this, NameActivity.class);
+                Intent intent = new Intent(CartActivity.this, QuestionActivity.class);
                 intent.putExtra("total cost", getTotalCost());
                 startActivity(intent);
             }

@@ -34,7 +34,7 @@
     </LinearLayout>
 
     <Button
-        android:id="@+id/name_confirm_button"
+        android:id="@+id/name_confirm_button_1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Confirm"

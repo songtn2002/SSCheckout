@@ -8,37 +8,41 @@ import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
 
-public class NameActivity extends AppCompatActivity {
+public class QuestionActivity extends AppCompatActivity {
 
     private double totalCost;
-    private String name;
 
-    private Button nameConfirm;
-    private EditText firstNameEdit;
-    private EditText lastNameEdit;
+    private Button yesButton;
+    private Button noButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_name);
+        setContentView(R.layout.activity_question);
 
-        Intent lastIntent = getIntent();
-        totalCost = lastIntent.getDoubleExtra("total cost", 0.0);
+        final Intent lastIntent = getIntent();
+        this.totalCost = lastIntent.getDoubleExtra("total cost", 0.0);
 
         ActionBar actionBar =  getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
         actionBar.setHomeButtonEnabled(true);
 
-        firstNameEdit = (EditText) findViewById(R.id.first_name_edit);
-        lastNameEdit = (EditText) findViewById(R.id.last_name_edit);
-        nameConfirm = (Button) findViewById(R.id.name_confirm_button);
-        nameConfirm.setOnClickListener(new View.OnClickListener(){
+        yesButton = (Button) findViewById(R.id.yes_button);
+        yesButton.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(NameActivity.this, ResultActivity.class);
-                intent.putExtra("total cost", totalCost);
+                Intent intent = new Intent(QuestionActivity.this, NameEntryActivity.class);
+                intent.putExtra("total cost",QuestionActivity.this.totalCost);
+                startActivity(intent);
+            }
+        });
+        noButton = (Button) findViewById(R.id.no_button);
+        noButton.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(QuestionActivity.this, NameChoiceActivity.class);
+                intent.putExtra("total cost",QuestionActivity.this.totalCost);
                 startActivity(intent);
             }
         });
@@ -55,4 +59,5 @@ public class NameActivity extends AppCompatActivity {
                 return super.onOptionsItemSelected(item);
         }
     }
+
 }

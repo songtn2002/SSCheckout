@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android = "http://schemas.android.com/apk/res/android"
+    android:layout_height="match_parent"
+    android:layout_width="match_parent"
+    android:orientation="vertical">
+
+    <TextView
+        android:text="Please choose your name:"
+        android:textStyle="bold"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="30sp"/>
+
+    <ListView
+        android:id="@+id/name_choice_listview"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:choiceMode="singleChoice"
+        android:listSelector="@android:color/darker_gray"/>
+
+    <Button
+        android:id="@+id/name_confirm_button_2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="confirm"/>
+
+</LinearLayout>
