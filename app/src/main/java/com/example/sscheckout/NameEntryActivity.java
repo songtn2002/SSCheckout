@@ -19,6 +19,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import java.util.List;
+
 import static com.example.sscheckout.SheetHandler.REQUEST_AUTHORIZATION;
 import static com.example.sscheckout.SheetHandler.createPrerequisites;
 import static com.example.sscheckout.SheetHandler.mCredential;
@@ -85,7 +87,15 @@ public class NameEntryActivity extends AppCompatActivity {
                     public void run() {
                         String msg = "Successfully Updated";
                         try {
-                            SheetHandler.addNewTab(NameEntryActivity.this, name, -totalCost);
+                            List<TabInfo> tabs = SheetHandler.getTabs(NameEntryActivity.this);
+                            int tabIndex = TabInfo.contains(tabs, name);
+                            if (tabIndex == -1){
+                                SheetHandler.addNewTab(NameEntryActivity.this, name, -totalCost);
+                            }else{
+                                TabInfo changedTab = tabs.get(tabIndex);
+                                changedTab.setTab(changedTab.getTab()-totalCost);
+                                SheetHandler.updateTab(NameEntryActivity.this, changedTab);
+                            }
                         }catch(Exception e){
                             msg = e.getClass().getSimpleName()+" "+e.getMessage();
                         }
